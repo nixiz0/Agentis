@@ -43,8 +43,16 @@ def start_web_ui(model, theme=None):
         theme = gr.themes.Glass()
     else: 
         theme = None
-        
-    with gr.Blocks(title="Agentis", theme=theme) as agentis:
+    
+    css = """ 
+            .contain {margin-bottom: 3em !important;}
+            footer {display: none !important;}
+            gradio-app {background-color: #212121 !important;}
+            #component-3 {width: 30% !important; margin: 0 auto !important; font-size: 1.25em !important;}
+            #component-4 {width: 30% !important; margin: 0 auto !important; font-size: 1.25em !important;}
+          """
+    
+    with gr.Blocks(title="Agentis", theme=theme, css=css) as agentis:
         chatbot = gr.Chatbot(label="Agent", height=700)
         msg = gr.Textbox(placeholder="User Prompt", label="Prompt")
         btn_submit = gr.Button(value="Submit", variant='primary')
@@ -54,3 +62,5 @@ def start_web_ui(model, theme=None):
         msg.submit(generate_response, [msg, chatbot], [msg, chatbot])
         
         agentis.launch(favicon_path="web/static/agentis_favicon.ico", inbrowser=True)
+
+start_web_ui("mistral:latest", theme=None)
