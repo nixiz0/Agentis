@@ -62,5 +62,3 @@ def start_web_ui(model, theme=None):
         msg.submit(generate_response, [msg, chatbot], [msg, chatbot])
         
         agentis.launch(favicon_path="web/static/agentis_favicon.ico", inbrowser=True)
-
-start_web_ui("mistral:latest", theme=None)
