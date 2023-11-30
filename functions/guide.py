@@ -11,18 +11,18 @@ def open_html_file(file_path):
 def guide():
     html_file_path = "functions/html_guide/guide.html"
     try:
-        # Vérifie si WSL est installé
+        # Checks if WSL is installed
         wsl_install = subprocess.run(["wsl", "-l"], capture_output=True, text=True)
         if wsl_install.returncode != 0:
-            # Télécharge et installe WSL si ce n'est pas déjà fait
+            # Download and install WSL if not already done
             subprocess.run(["wsl", "--install"], check=True)
             subprocess.run(["wsl", "sudo", "apt", "update", "&&", "sudo", "apt", "upgrade"], check=True)
             open_html_file(html_file_path)
         else:
-            print("WSL est déjà installé.")
+            print("WSL is already installed.")
             open_html_file(html_file_path)
 
     except subprocess.CalledProcessError as e:
-        print(f"Une erreur s'est produite : {e}")
+        print(f"An error has occurred: {e}")
         
     
