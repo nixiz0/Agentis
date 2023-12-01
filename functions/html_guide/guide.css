@@ -72,6 +72,11 @@ h3 {
         font-size: 1.45em;
     }
 
+    .basic_title {
+        color: #ff8400;
+        font-size: 1.45em;
+    }
+
 .shell_details, .download_models {
     margin-top: 3em;
 }
