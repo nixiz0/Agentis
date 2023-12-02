@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
 import subprocess
@@ -71,8 +73,23 @@ def start():
 def callback(url):
     webbrowser.open_new(url)
 
-def create_action():
-    print("Create button action")
+def conversation_history():
+    if sys.platform.startswith('linux') or sys.platform.startswith('darwin'):
+        download_folder = os.path.expanduser("~") + "/Downloads"
+        if os.path.isdir(download_folder):
+            if sys.platform.startswith('linux'):
+                # Pour Linux
+                subprocess.Popen(['xdg-open', download_folder])  
+            elif sys.platform.startswith('darwin'):
+                # Pour MacOS
+                subprocess.Popen(['open', download_folder])  
+        else:
+            print("Download folder not found.")
+    elif sys.platform.startswith('win'):
+        # Pour Windows
+        subprocess.Popen(['explorer', os.path.join(os.path.expanduser("~"), "Downloads")])  
+    else:
+        print("Unsupported operating system.")
 
 # Creation of the main window
 root = tk.Tk()
@@ -95,7 +112,7 @@ image_label.pack()
 # Creation of buttons
 start_button = ttk.Button(root, text="Installation Guide", command=installation_guide, style='TButton')
 list_button = ttk.Button(root, text="Start", command=start, style='TButton')
-create_button = ttk.Button(root, text="Create", command=create_action, style='TButton')
+create_button = ttk.Button(root, text="Open History", command=conversation_history, style='TButton')
 
 # Applying styling to buttons
 start_button.pack(pady=(20, 5))
