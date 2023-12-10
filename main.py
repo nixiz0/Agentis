@@ -68,6 +68,7 @@ def start():
 
     ok_button = ttk.Button(dialog, text="OK", command=on_ok_click)
     ok_button.pack(pady=15)
+    dialog.bind('<Return>', lambda event: on_ok_click())
     dialog.mainloop()
 
 def callback(url):
