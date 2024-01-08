@@ -1,3 +1,5 @@
+import csv
+import datetime
 import pyttsx3
 import speech_recognition as sr
 import requests
@@ -45,6 +47,16 @@ def start_talk_chatbot(model, language="en-EN", mic_index=0, voice_id='HKEY_LOCA
         else:
             return "Error: Unable to fetch response", chat_history
 
+    def save_conversation(conversation_history):
+        filename = f"conversation_history.csv"
+        with open(os.path.join(os.path.expanduser('~'), 'Downloads', filename), 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(["User", "Model"])
+            for index in range(0, len(conversation_history), 2):
+                user = conversation_history[index]
+                model = conversation_history[index + 1] if index + 1 < len(conversation_history) else ""
+                writer.writerow([user, model])
+
     while True:
         with sr.Microphone(device_index=mic_index) as source:
             print("Listening...")
@@ -54,13 +66,22 @@ def start_talk_chatbot(model, language="en-EN", mic_index=0, voice_id='HKEY_LOCA
                 # Recognize user voice
                 user_input = recognizer.recognize_google(audio, language=language)
                 print("User: " + user_input)
+                
+                # Check if the user wants to save the conversation
+                detect_save_keyords = ['sauvegarde notre discussion', 'sauvegarde notre conversation', 'sauvegarde la discussion', 'sauvegarde la conversation',
+                                        'save our discussion', 'save our conversation', 'save the discussion', 'save the conversation',
+                                        ]
+                if any(keyword in user_input.lower() for keyword in detect_save_keyords):
+                    save_conversation(conversation_history)
+                    print("Conversation saved.")
+                    continue
 
                 # Check if the user wants to stop the conversation
                 detect_stop_keyords = ['stoppe notre discussion', 'stoppe notre conversation', 'stoppe la discussion', 'stoppe la conversation',
                                        'stop our discussion', 'stop our conversation', 'stop the discussion', 'stop the conversation',
                                        ]
                 if any(keyword in user_input.lower() for keyword in detect_stop_keyords):
-                    engine.say("Bye")
+                    engine.say("Okay Bye")
                     engine.runAndWait()
                     print("Stopping the conversation.")
                     break
