@@ -65,8 +65,6 @@ And that's it, please remember to have launched your ollama server in parallel a
 
 ## To have more Synthetic Voices Available (on Windows)
 
-Example of the list of your synthetic voices :
-
 ![List Synthetic Voices](ressources/list_example_voices.png)
 
 If you want to have more synthetic voices available, on Windows you have to go to the narrator settings and you can download the voices you want.
