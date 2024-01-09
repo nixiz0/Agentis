@@ -8,7 +8,7 @@ import subprocess
 def open_html_file(file_path):
     webbrowser.open(f"file://{os.path.realpath(file_path)}")
 
-def guide():
+def installation_guide():
     html_file_path = "functions/html_guide/guide.html"
     try:
         # Checks if WSL is installed
