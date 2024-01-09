@@ -62,6 +62,17 @@ To talk to your model you must :
 
 And that's it, please remember to have launched your ollama server in parallel and to have installed the local models that you want to use for this to work.
 
+**Vocal commands that you can use :**
+- If you said these words in the same order followed by the video you want to search for **'recherche sur youtube', 'find on youtube', 'find in youtube'**, it will launch youtube and search the video that you asked.
+
+- If you said these words in the same order **'quelle heure est-il', 'l\'heure actuelle', 'what time is it'**, it will return you the current time.
+
+- If you said these words in the same order **'date actuelle', 'date d\'aujourd\'hui', 'current date', 'today\'s date', 'date of today'**, it will return you the current date.
+
+- If you said these words in the same order **'sauvegarde notre discussion', 'sauvegarde notre conversation', 'sauvegarde la discussion', 'sauvegarde la conversation', 'save our discussion', 'save our conversation', 'save the discussion', 'save the conversation'**, it will saved all your discussion with the model on a CSV file (in your download folder).
+
+- If you said these words in the same order **'stoppe notre discussion', 'stoppe notre conversation', 'stoppe la discussion', 'stoppe la conversation', 'stop our discussion', 'stop our conversation', 'stop the discussion', 'stop the conversation'**, it will stop the conversation.
+
 
 ## To have more Synthetic Voices Available (on Windows)
 
@@ -80,6 +91,17 @@ If this doesn't work and doesn't recognize the voices you have installed on the 
 with **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SPEECH\Voices\Tokens**.
 
 5. Save the modified file and double-click it to import the changes to the registry.
+
+
+## Tech Used
+
+**AI-Models:** Ollama
+
+**Interface:** Tkinter
+
+**Talk with AI:** pyaudio (detect audio devices) / pyttsx3 (text-to-speech conversion) / speech_recognition (recognize voice and translate to text)
+
+**Computer Commands:** pywhatkit (search on youtube videos)
 
 
 ## Author
