@@ -5,14 +5,14 @@
 
 Also, **Agentis** has a **dynamic web interface** with several themes and allows the user to chat with the model of their choice locally on a modern web interface, the text conversation can be saved in a CSV or HTML file.
 
-Moreover, **Agentis** has several **synthetic voices** that you allow to talk with your local models.
+Moreover, **Agentis** use several **synthetic voices** that you allow to talk with your local models.
 
 To launch the code in python please be careful to have python install on your machine as well as all the required packages that you can find bellow.
 
 
 ## Installation of Python libraries
 
-IMPORTANT : You Need To Have Python 3.11 !!
+*IMPORTANT : You Need To Have Python 3.11 !!*
 
 First you have to clone with :
 ```bash
@@ -66,6 +66,7 @@ And that's it, please remember to have launched your ollama server in parallel a
 ## To have more Synthetic Voices Available (on Windows)
 
 Example of the list of your synthetic voices :
+
 ![List Synthetic Voices](ressources/list_example_voices.png)
 
 If you want to have more synthetic voices available, on Windows you have to go to the narrator settings and you can download the voices you want.
@@ -77,7 +78,8 @@ If this doesn't work and doesn't recognize the voices you have installed on the 
 
 3. Export this key to a **REG file** (with a right click on the file).
 
-4. Open this file with a text editor and replace all occurrences of **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens** with **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SPEECH\Voices\Tokens**.
+4. Open this file with a text editor and replace all occurrences of **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens** 
+with **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SPEECH\Voices\Tokens**.
 
 5. Save the modified file and double-click it to import the changes to the registry.
 
