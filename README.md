@@ -30,6 +30,10 @@ pip install -r requirements.txt
 
 ## Run Agentis
 
+You can click on the **'start-app.bat'** and the application will launch automatically.
+
+If you want to run the code from your code environment, do this:
+
 Use this command in your terminal that you placed in your local directory of the file.
 (Attention don't forget to activate your local environment to run the code)
 
