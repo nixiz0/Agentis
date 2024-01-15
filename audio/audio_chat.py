@@ -6,6 +6,7 @@ import requests
 import json
 import os
 import datetime
+import re
 
 
 def start_talk_chatbot(model='llama2', language="en-EN", mic_index=0, voice_id='HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\MSTTS_V110_enGB_HazelM'):
@@ -23,6 +24,23 @@ def start_talk_chatbot(model='llama2', language="en-EN", mic_index=0, voice_id='
     recognizer = sr.Recognizer()
 
     def beforeSay(response):
+        # remove all char between stars
+        response = re.sub(r'\*.*?\*', '', response)
+        # remove all emoji
+        emoji_pattern = re.compile("["
+                           u"\U0001F600-\U0001F64F"  # emoticons
+                           u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                           u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                           u"\U0001F700-\U0001F77F"  # alchemical symbols
+                           u"\U0001F780-\U0001F7FF"  # Geometric Shapes Extended
+                           u"\U0001F800-\U0001F8FF"  # Supplemental Arrows-C
+                           u"\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
+                           u"\U0001FA00-\U0001FA6F"  # Chess Symbols
+                           u"\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
+                           u"\U00002702-\U000027B0"  # Dingbats
+                           u"\U000024C2-\U0001F251" 
+                           "]+", flags=re.UNICODE)
+        response = emoji_pattern.sub('', response)
         return response
 
     def say(response):
