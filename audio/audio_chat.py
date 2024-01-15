@@ -154,3 +154,56 @@ def start_talk_chatbot(model='llama2', language="en-EN", mic_index=0, voice_id='
                 print("Google Speech Recognition could not understand audio")
             except sr.RequestError as e:
                 print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
+if __name__ == '__main__':
+    import tkinter as tk
+    from tkinter import ttk, messagebox
+    import pyaudio
+    root = tk.Tk()
+    mic_index = tk.IntVar()
+    def show_mic_list():
+        p = pyaudio.PyAudio()
+        mic_list = []
+        for i in range(p.get_device_count()):
+            device_info = p.get_device_info_by_index(i)
+            if device_info['maxInputChannels'] > 0:
+                # Check if the device is available and active
+                if device_info['hostApi'] == p.get_default_host_api_info()['index'] and device_info['maxInputChannels'] > 0:
+                    mic_list.append(device_info['name'])
+        p.terminate()
+
+        mic_list_dialog = root
+        mic_list_dialog.title("Microphone List")
+
+        # Create a canvas inside the dialog
+        canvas = tk.Canvas(mic_list_dialog, width=290, height=200, background='#ffffff')
+        scrollbar = ttk.Scrollbar(mic_list_dialog, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+
+        # Bind the canvas's height to the scrollable frame's height
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
+
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        def select_mic(index):
+            # Selected mic_index
+            mic_index.set(index)
+            print(f"Selected Microphone Index: {index}")
+            mic_list_dialog.destroy()
+            start_talk_chatbot(mic_index=mic_index.get())
+        
+        for idx, mic_name in enumerate(mic_list):
+            mic_button = tk.Button(scrollable_frame, text=mic_name, command=lambda idx=idx: select_mic(idx), font=("Inter", 12))
+            mic_button.pack()
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+
+    show_mic_list()
+    root.mainloop()
