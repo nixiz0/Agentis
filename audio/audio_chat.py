@@ -62,6 +62,7 @@ def start_talk_chatbot(model, language="en-EN", mic_index=0, voice_id='HKEY_LOCA
         with sr.Microphone(device_index=mic_index) as source:
             print("Listening...")
             audio = recognizer.listen(source)
+            print('stop Listening... start response...')
 
             try:
                 # Recognize user voice
