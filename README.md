@@ -99,7 +99,7 @@ with **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SPEECH\Voices\Tokens**.
 
 ## Tech Used
 
-**AI-Models:** Ollama
+**AI-Models:** Ollama (version 0.1.20 minimum)
 
 **Interface:** Tkinter
 
