@@ -10,34 +10,21 @@ Moreover, **Agentis** use several **synthetic voices** that you allow to talk wi
 To launch the code in python please be careful to have python install on your machine as well as all the required packages that you can find bellow.
 
 
-## Installation of Python libraries
-
-*IMPORTANT : You Need To Have Python 3.11 !!*
-
-First you have to clone with :
-```bash
-git clone https://github.com/nixiz0/Agentis.git
-```
-
-Second, you create a virtual environment with a python interpreter that you activate on your directory.
-
-Then, once you are in your terminal in the directory of the project folder you make the command below to install the python libraries necessary for the proper functioning of the program.
-
-```bash
-pip install -r requirements.txt
-```
-
-
 ## Run Agentis
 
-You can click on the **'start-app.bat'** and the application will **launch automatically** (if you have beforehand creating your .env and download the requirements.txt in your activate environment).
+You can click on the **'start-app.bat'** and the application will **launch and make the installation automatically**.
 
 If you want to run the code from your code environment, do this :
 
-Use this command in your terminal that you placed in your local directory of the file.
-(Attention don't forget to activate your local environment to run the code)
+=> You need to install **Python 3.11**
 
-`python main.py`
+1-/ Clone this repository ```git clone https://github.com/nixiz0/Agentis.git```
+
+2-/ Create your environment ```python -m venv .env```
+
+3-/ Download required libraries ```pip install -r requirements.txt```
+
+4- Run the main.py ```python main.py```
 
 Once the main.py is launched please follow the **installation guide** to have Ollama and launch your server as well as install your models.
 
